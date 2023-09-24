@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Teladoc Assignment</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_words_count">WordsCountActivity</string>
+    <string name="word">Word</string>
+    <string name="count">Count</string>
+    <string name="romeo_and_juliet">Romeo and Juliet</string>
 </resources>

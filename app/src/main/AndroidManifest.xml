@@ -10,7 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.TeladocAssignment"
         tools:targetApi="31">
+        <activity
+            android:name=".romeoandjuliet.presentation.ui.WordsCountActivity"
+            android:exported="false"
+            android:label="@string/title_activity_words_count"
+            android:theme="@style/Theme.TeladocAssignment" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
