@@ -11,9 +11,10 @@ class WordsCountAdapter : RecyclerView.Adapter<WordsCountAdapter.ViewHolder>() {
 
     private val items: ArrayList<WordsCountItem> = ArrayList()
 
-    fun update(list: List<WordsCountItem>){
+    fun update(list: List<WordsCountItem>) {
+        items.clear()
         items.addAll(list)
-        notifyDataSetChanged()//todo diff
+        notifyItemRangeInserted(0, list.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

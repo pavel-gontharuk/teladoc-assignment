@@ -7,6 +7,7 @@ import com.gontharuk.teladocassignment.romeoandjuliet.data.WordsCountRepositoryI
 import com.gontharuk.teladocassignment.romeoandjuliet.domain.repository.WordsCountRepository
 import com.gontharuk.teladocassignment.romeoandjuliet.domain.usecase.WordsCountUseCase
 import com.gontharuk.teladocassignment.romeoandjuliet.domain.usecase.WordsCountUseCaseImpl
+import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountUiState
 import java.util.regex.Pattern
 
 class WordCountPresenterFactory {
@@ -14,7 +15,8 @@ class WordCountPresenterFactory {
     fun create(
         context: Context,
         @RawRes rawFile: Int,
-        pattern: Pattern
+        pattern: Pattern,
+        initState: WordsCountUiState
     ): WordsCountPresenter {
         val iterator: Iterator<String> = TextIterator(
             context = context,
@@ -25,6 +27,6 @@ class WordCountPresenterFactory {
             pattern = pattern
         )
         val useCase: WordsCountUseCase = WordsCountUseCaseImpl(repository)
-        return WordsCountPresenter(useCase)
+        return WordsCountPresenter(useCase, initState)
     }
 }
