@@ -1,19 +1,19 @@
-package com.gontharuk.teladocassignment.romeoandjuliet.presentation.ui
+package com.gontharuk.teladocassignment.twistandshout.presentation.ui
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.gontharuk.teladocassignment.databinding.WordsCountItemBinding
-import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountItem
+import com.gontharuk.teladocassignment.databinding.TwistItemBinding
+import com.gontharuk.teladocassignment.twistandshout.presentation.entity.TwistItem
 
-class WordsCountAdapter : RecyclerView.Adapter<WordsCountAdapter.ViewHolder>() {
+class TwistAdapter : RecyclerView.Adapter<TwistAdapter.ViewHolder>() {
 
-    private val items: ArrayList<WordsCountItem> = ArrayList()
+    private val items: ArrayList<TwistItem> = ArrayList()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update(list: List<WordsCountItem>) {
+    fun update(list: List<TwistItem>) {
         items.clear()
         items.addAll(list)
         notifyDataSetChanged()
@@ -21,7 +21,7 @@ class WordsCountAdapter : RecyclerView.Adapter<WordsCountAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            WordsCountItemBinding.inflate(
+            TwistItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -32,15 +32,12 @@ class WordsCountAdapter : RecyclerView.Adapter<WordsCountAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
-        holder.word.text = item.word
-        holder.count.text = item.count.toString()
+        holder.albumName.text = items[position].albumName
     }
 
     inner class ViewHolder(
-        binding: WordsCountItemBinding
+        binding: TwistItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        val word: TextView = binding.tvWord
-        val count: TextView = binding.tvCount
+        val albumName: TextView = binding.tvAlbumName
     }
 }

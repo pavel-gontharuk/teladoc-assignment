@@ -8,7 +8,7 @@ import com.gontharuk.teladocassignment.core.state.SaveStateManager
 import com.gontharuk.teladocassignment.databinding.WordsCountActivityBinding
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountItemMapper
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountUiState
-import com.gontharuk.teladocassignment.romeoandjuliet.presentation.presenter.WordCountPresenterFactory
+import com.gontharuk.teladocassignment.romeoandjuliet.presentation.presenter.WordsCountPresenterFactory
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.presenter.WordsCountPresenter
 import java.util.regex.Pattern
 
@@ -22,7 +22,7 @@ class WordsCountActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = WordCountPresenterFactory().create(
+        presenter = WordsCountPresenterFactory().create(
             context = baseContext,
             rawFile = R.raw.romeo_and_juliet,
             pattern = Pattern.compile("\\b[a-zA-Z’]+\\b"),
@@ -35,7 +35,7 @@ class WordsCountActivity : BaseActivity() {
         lifecycle.subscribe(presenter)
         binding.rvWordsTable.adapter = adapter
         binding.rvWordsTable.layoutManager = LinearLayoutManager(this)
-        presenter.stateObservable.subscribe {
+        presenter.state.subscribe {
             when (it) {
                 WordsCountUiState.Loading -> Unit
                 is WordsCountUiState.Show -> adapter.update(it.items)
@@ -46,7 +46,7 @@ class WordsCountActivity : BaseActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         if (!::presenter.isInitialized) return
-        val state = presenter.stateObservable.data ?: return
+        val state = presenter.state.data ?: return
         stateManager.save(state, outState)
     }
 }

@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.TeladocAssignment" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.TeladocAssignment" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:textColor">@color/black</item>
+<!--        todo contextual menu color -->
+<!--        <item name="android:background">@color/black</item>-->
+<!--        <item name="android:buttonStyle">@style/ButtonStyle</item>-->
+        <item name="android:editTextStyle">@style/EditTextStyle</item>
+    </style>
+
+    <style name="ButtonStyle" parent="android:Widget.Material.Button">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="EditTextStyle" parent="android:Widget.Material.EditText">
+<!--        <item name="android:textColor">@color/white</item>-->
+        <item name="android:background">@drawable/et_border</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">@dimen/padding</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
 </resources>

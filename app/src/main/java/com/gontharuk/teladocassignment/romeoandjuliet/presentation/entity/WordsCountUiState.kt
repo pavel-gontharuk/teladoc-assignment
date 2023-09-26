@@ -4,5 +4,5 @@ sealed class WordsCountUiState {
 
     data object Loading : WordsCountUiState()
 
-    data class Show(val items: List<WordsCountItem>) : WordsCountUiState()
+    data class Show(val items: List<WordsCountItem> = emptyList()) : WordsCountUiState()
 }

@@ -12,4 +12,11 @@
         android:layout_margin="@dimen/margin"
         android:text="@string/romeo_and_juliet" />
 
+    <Button
+        android:id="@+id/btn_twist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/twist_and_shout" />
+
 </LinearLayout>

@@ -10,7 +10,7 @@ import com.gontharuk.teladocassignment.romeoandjuliet.domain.usecase.WordsCountU
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountUiState
 import java.util.regex.Pattern
 
-class WordCountPresenterFactory {
+class WordsCountPresenterFactory {
 
     fun create(
         context: Context,

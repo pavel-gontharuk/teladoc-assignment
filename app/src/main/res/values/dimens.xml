@@ -3,4 +3,5 @@
     <dimen name="padding">2dp</dimen>
     <dimen name="margin">8dp</dimen>
     <dimen name="count_min_width">100dp</dimen>
+    <dimen name="index_min_width">20dp</dimen>
 </resources>

@@ -5,4 +5,7 @@
     <string name="word">Word</string>
     <string name="count">Count</string>
     <string name="romeo_and_juliet">Romeo and Juliet</string>
+    <string name="twist_and_shout">Twist and Shout</string>
+    <string name="title_activity_twist">TwistActivity</string>
+    <string name="search">Search</string>
 </resources>
