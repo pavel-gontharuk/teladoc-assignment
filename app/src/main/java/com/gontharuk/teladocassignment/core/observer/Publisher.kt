@@ -16,6 +16,7 @@ class Publisher<T>(initial: T) : Observable<T> {
         observers.remove(observer)
     }
 
+    @Synchronized
     fun next(next: T) {
         _data = next
         observers.forEach { it.onNext(_data) }

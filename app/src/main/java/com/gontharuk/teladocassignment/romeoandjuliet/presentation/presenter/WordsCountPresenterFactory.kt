@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.annotation.RawRes
 import com.gontharuk.teladocassignment.romeoandjuliet.data.TextIterator
 import com.gontharuk.teladocassignment.romeoandjuliet.data.WordsCountRepositoryImpl
-import com.gontharuk.teladocassignment.romeoandjuliet.domain.repository.WordsCountRepository
-import com.gontharuk.teladocassignment.romeoandjuliet.domain.usecase.WordsCountUseCase
-import com.gontharuk.teladocassignment.romeoandjuliet.domain.usecase.WordsCountUseCaseImpl
+import com.gontharuk.teladocassignment.romeoandjuliet.data.repository.WordsCountRepository
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountUiState
 import java.util.regex.Pattern
 
@@ -26,7 +24,6 @@ class WordsCountPresenterFactory {
             stringIterator = iterator,
             pattern = pattern
         )
-        val useCase: WordsCountUseCase = WordsCountUseCaseImpl(repository)
-        return WordsCountPresenter(useCase, initState)
+        return WordsCountPresenter(repository, initState)
     }
 }

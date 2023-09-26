@@ -1,4 +1,4 @@
-package com.gontharuk.teladocassignment.romeoandjuliet.domain.repository
+package com.gontharuk.teladocassignment.romeoandjuliet.data.repository
 
 interface WordsCountRepository {
 

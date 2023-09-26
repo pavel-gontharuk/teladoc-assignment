@@ -6,13 +6,13 @@ import com.gontharuk.teladocassignment.core.observer.Observer
 import com.gontharuk.teladocassignment.core.observer.Publisher
 import com.gontharuk.teladocassignment.core.presentation.Presenter
 import com.gontharuk.teladocassignment.core.threads.ThreadComposition
-import com.gontharuk.teladocassignment.romeoandjuliet.domain.usecase.WordsCountUseCase
+import com.gontharuk.teladocassignment.romeoandjuliet.data.repository.WordsCountRepository
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordFiler
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountItem
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountUiState
 
 class WordsCountPresenter(
-    private val wordsCountUseCase: WordsCountUseCase,
+    private val wordsCountRepository: WordsCountRepository,
     initState: WordsCountUiState
 ) : Presenter<WordsCountUiState>, Observer<Lifecycle> {
 
@@ -41,7 +41,7 @@ class WordsCountPresenter(
     fun fetch(filter: WordFiler) {
         composition.add(
             onBackground = {
-                wordsCountUseCase.words()
+                wordsCountRepository.words()
                     .map {
                         WordsCountItem(it)
                     }

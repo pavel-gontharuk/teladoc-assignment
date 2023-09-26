@@ -1,6 +1,6 @@
 package com.gontharuk.teladocassignment.romeoandjuliet.data
 
-import com.gontharuk.teladocassignment.romeoandjuliet.domain.repository.WordsCountRepository
+import com.gontharuk.teladocassignment.romeoandjuliet.data.repository.WordsCountRepository
 import java.util.regex.Pattern
 
 class WordsCountRepositoryImpl(
@@ -22,6 +22,7 @@ class WordsCountRepositoryImpl(
         }
     }
 
+    @Synchronized
     override fun put(vararg words: String) {
         words.forEach { next ->
             map.getOrPut(next) { 0 }
