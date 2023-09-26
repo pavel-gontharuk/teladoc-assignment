@@ -26,8 +26,7 @@ class TwistPresenter(
             Lifecycle.CREATE -> {
                 when (val mState = _state.data) {
                     is TwistUiState.Loading -> search(mState.search)
-                    is TwistUiState.Show,
-                    null -> Unit
+                    is TwistUiState.Show -> Unit
                 }
             }
 
@@ -35,7 +34,8 @@ class TwistPresenter(
             Lifecycle.DESTROY -> _state.clear()
             Lifecycle.START,
             Lifecycle.RESUME,
-            Lifecycle.PAUSE -> Unit
+            Lifecycle.PAUSE,
+            Lifecycle.NONE -> Unit
         }
     }
 

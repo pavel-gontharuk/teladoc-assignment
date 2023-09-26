@@ -7,4 +7,6 @@ enum class Lifecycle {
     PAUSE,
     STOP,
     DESTROY,
+
+    NONE,
 }

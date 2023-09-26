@@ -8,4 +8,7 @@
     <string name="twist_and_shout">Twist and Shout</string>
     <string name="title_activity_twist">TwistActivity</string>
     <string name="search">Search</string>
+    <string name="alphabetically">Alphabetically</string>
+    <string name="length">Length</string>
+    <string name="sort_by">Sort by:</string>
 </resources>

@@ -3,6 +3,7 @@ package com.gontharuk.teladocassignment.romeoandjuliet.presentation.ui
 import android.os.Bundle
 import com.gontharuk.teladocassignment.core.mapper.JsonMapper
 import com.gontharuk.teladocassignment.core.state.SaveStateManager
+import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordFiler
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountItem
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountUiState
 import org.json.JSONArray
@@ -16,6 +17,7 @@ class WordsCountStateManager(
     private val query: String = "words_count_ui_state"
     private val stateKey: String = "state"
     private val itemsKey: String = "items"
+    private val filterKey: String = "filter"
 
     override fun save(state: WordsCountUiState, outState: Bundle) {
         Bundle().apply {
@@ -27,9 +29,12 @@ class WordsCountStateManager(
                         array.put(mapper.map(it))
                     }
                     putString(itemsKey, array.toString())
+                    putString(filterKey, state.filter.name)
                 }
 
-                WordsCountUiState.Loading -> Unit
+                is WordsCountUiState.Loading -> {
+                    putString(filterKey, state.filter.name)
+                }
             }
         }.also { outState.putBundle(query, it) }
     }
@@ -44,13 +49,21 @@ class WordsCountStateManager(
                     val next = array.getString(index)
                     list.add(mapper.map(JSONObject(next)))
                 }
-                WordsCountUiState.Show(list)
+
+                val filter = WordFiler.valueOf(bundle.getString(filterKey) ?: WordFiler.COUNT.name)
+                WordsCountUiState.Show(
+                    filter = filter,
+                    items = list
+                )
             }
 
-            else -> WordsCountUiState.Loading
+            else -> {
+                val filter = WordFiler.valueOf(bundle.getString(filterKey) ?: WordFiler.COUNT.name)
+                WordsCountUiState.Loading(filter)
+            }
         }
     } catch (ex: Exception) {
         ex.printStackTrace()
-        WordsCountUiState.Loading
+        WordsCountUiState.Loading()
     }
 }

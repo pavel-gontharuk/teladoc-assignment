@@ -7,6 +7,7 @@ import com.gontharuk.teladocassignment.core.observer.Publisher
 import com.gontharuk.teladocassignment.core.presentation.Presenter
 import com.gontharuk.teladocassignment.core.threads.ThreadComposition
 import com.gontharuk.teladocassignment.romeoandjuliet.domain.usecase.WordsCountUseCase
+import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordFiler
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountItem
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountUiState
 
@@ -22,27 +23,43 @@ class WordsCountPresenter(
 
     override fun onNext(data: Lifecycle) {
         when (data) {
-            Lifecycle.CREATE -> fetch()
+            Lifecycle.CREATE -> {
+                if (_state.data is WordsCountUiState.Loading) {
+                    fetch(_state.data.filter)
+                }
+            }
+
             Lifecycle.STOP -> composition.interrupt()
             Lifecycle.DESTROY -> _state.clear()
             Lifecycle.START,
             Lifecycle.RESUME,
-            Lifecycle.PAUSE -> Unit
+            Lifecycle.PAUSE,
+            Lifecycle.NONE -> Unit
         }
     }
 
-    private fun fetch() {
-        if (_state.data is WordsCountUiState.Show) return
+    fun fetch(filter: WordFiler) {
         composition.add(
             onBackground = {
                 wordsCountUseCase.words()
                     .map {
                         WordsCountItem(it)
                     }
-                    .sortedByDescending { it.count }
+                    .let { result ->
+                        when (filter) {
+                            WordFiler.COUNT -> result.sortedByDescending { it.count }
+                            WordFiler.ALPHABETICALLY -> result.sortedBy { it.word }
+                            WordFiler.LENGTH -> result.sortedByDescending { it.word.length }
+                        }
+                    }
             },
             onMain = {
-                _state.next(WordsCountUiState.Show(it))
+                _state.next(
+                    WordsCountUiState.Show(
+                        filter = filter,
+                        items = it
+                    )
+                )
             }
         )
     }

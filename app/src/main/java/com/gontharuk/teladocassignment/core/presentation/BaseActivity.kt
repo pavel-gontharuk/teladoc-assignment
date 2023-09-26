@@ -8,7 +8,7 @@ import com.gontharuk.teladocassignment.core.observer.Publisher
 
 abstract class BaseActivity : Activity() {
 
-    private val _lifecycle: Publisher<Lifecycle> = Publisher()
+    private val _lifecycle: Publisher<Lifecycle> = Publisher(Lifecycle.NONE)
     val lifecycle: Observable<Lifecycle> get() = _lifecycle
 
     override fun onCreate(savedInstanceState: Bundle?) {

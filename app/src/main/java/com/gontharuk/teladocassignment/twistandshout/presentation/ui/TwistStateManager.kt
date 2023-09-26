@@ -31,7 +31,9 @@ class TwistStateManager(
                     putString(searchKey, state.search)
                 }
 
-                is TwistUiState.Loading -> Unit
+                is TwistUiState.Loading -> {
+                    putString(searchKey, state.search)
+                }
             }
         }.also { outState.putBundle(query, it) }
     }
@@ -52,7 +54,7 @@ class TwistStateManager(
                 )
             }
 
-            else -> TwistUiState.Loading()
+            else -> TwistUiState.Loading(bundle.getString(searchKey, ""))
         }
     } catch (ex: Exception) {
         ex.printStackTrace()

@@ -1,15 +1,15 @@
 package com.gontharuk.teladocassignment.core.observer
 
-class Publisher<T>(initial: T? = null) : Observable<T> {
+class Publisher<T>(initial: T) : Observable<T> {
 
     private val observers: ArrayList<Observer<T>> by lazy { ArrayList() }
 
-    private var _data: T? = initial
-    override val data: T? get() = _data
+    private var _data: T = initial
+    override val data: T get() = _data
 
     override fun subscribe(observer: Observer<T>) {
         observers.add(observer)
-        _data?.also { observer.onNext(it) }
+        _data.also { observer.onNext(it) }
     }
 
     override fun unsubscribe(observer: Observer<T>) {
@@ -18,7 +18,7 @@ class Publisher<T>(initial: T? = null) : Observable<T> {
 
     fun next(next: T) {
         _data = next
-        observers.forEach { it.onNext(_data!!) }
+        observers.forEach { it.onNext(_data) }
     }
 
     fun clear() {

@@ -2,7 +2,14 @@ package com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity
 
 sealed class WordsCountUiState {
 
-    data object Loading : WordsCountUiState()
+    abstract val filter: WordFiler
 
-    data class Show(val items: List<WordsCountItem> = emptyList()) : WordsCountUiState()
+    data class Loading(
+        override val filter: WordFiler = WordFiler.COUNT
+    ) : WordsCountUiState()
+
+    data class Show(
+        override val filter: WordFiler = WordFiler.COUNT,
+        val items: List<WordsCountItem> = emptyList()
+    ) : WordsCountUiState()
 }
