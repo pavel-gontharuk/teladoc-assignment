@@ -1,4 +1,4 @@
-package com.gontharuk.teladocassignment.core
+package com.gontharuk.teladocassignment.core.presentation
 
 import android.app.Activity
 import android.os.Bundle

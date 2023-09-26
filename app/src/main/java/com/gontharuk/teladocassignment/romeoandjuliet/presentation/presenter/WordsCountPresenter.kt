@@ -1,7 +1,7 @@
 package com.gontharuk.teladocassignment.romeoandjuliet.presentation.presenter
 
-import com.gontharuk.teladocassignment.core.Presenter
-import com.gontharuk.teladocassignment.core.ThreadComposition
+import com.gontharuk.teladocassignment.core.presentation.Presenter
+import com.gontharuk.teladocassignment.core.threads.ThreadComposition
 import com.gontharuk.teladocassignment.core.lifecycle.Lifecycle
 import com.gontharuk.teladocassignment.core.observer.Observable
 import com.gontharuk.teladocassignment.core.observer.Observer

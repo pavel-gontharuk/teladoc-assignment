@@ -1,4 +1,4 @@
-package com.gontharuk.teladocassignment.core
+package com.gontharuk.teladocassignment.core.presentation
 
 import com.gontharuk.teladocassignment.core.observer.Observable
 

@@ -1,12 +1,11 @@
-package com.gontharuk.teladocassignment.core
+package com.gontharuk.teladocassignment.core.threads
 
 import android.os.Handler
 import android.os.Looper
-import java.util.LinkedList
 
 class ThreadComposition {
 
-    private val threads: LinkedList<Thread> by lazy { LinkedList() }
+    private val threads: MutableList<Thread> by lazy { mutableListOf() }
 
     fun <T> add(
         onBackground: () -> T,
@@ -27,5 +26,6 @@ class ThreadComposition {
         threads.forEach {
             it.interrupt()
         }
+        threads.clear()
     }
 }

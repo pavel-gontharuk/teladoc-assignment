@@ -3,7 +3,7 @@ package com.gontharuk.teladocassignment.romeoandjuliet.presentation.ui
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gontharuk.teladocassignment.R
-import com.gontharuk.teladocassignment.core.BaseActivity
+import com.gontharuk.teladocassignment.core.presentation.BaseActivity
 import com.gontharuk.teladocassignment.core.state.SaveStateManager
 import com.gontharuk.teladocassignment.databinding.WordsCountActivityBinding
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountItemMapper

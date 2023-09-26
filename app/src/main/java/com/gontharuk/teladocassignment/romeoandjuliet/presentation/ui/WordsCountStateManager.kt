@@ -1,7 +1,6 @@
 package com.gontharuk.teladocassignment.romeoandjuliet.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import com.gontharuk.teladocassignment.core.mapper.JsonMapper
 import com.gontharuk.teladocassignment.core.state.SaveStateManager
 import com.gontharuk.teladocassignment.romeoandjuliet.presentation.entity.WordsCountItem
@@ -19,7 +18,7 @@ class WordsCountStateManager(
 
     override fun save(state: WordsCountUiState, outState: Bundle) {
         Bundle().apply {
-            putString(stateKey, state::class.simpleName)
+            putString(stateKey, state::class.qualifiedName)
             when (state) {
                 is WordsCountUiState.Show -> {
                     val array = JSONArray()
@@ -37,7 +36,7 @@ class WordsCountStateManager(
     override fun restore(savedState: Bundle?): WordsCountUiState = try {
         val bundle = savedState!!.getBundle(query) ?: throw NullPointerException("No data for [$query]")
         when (bundle.getString(stateKey, "__UNKNOWN__")) {
-            WordsCountUiState.Show::class.simpleName -> {
+            WordsCountUiState.Show::class.qualifiedName -> {
                 val array = JSONArray(bundle.getString("items"))
                 val list = LinkedList<WordsCountItem>()
                 for (index in 0 until array.length()) {
@@ -50,7 +49,7 @@ class WordsCountStateManager(
             else -> WordsCountUiState.Loading
         }
     } catch (ex: Exception) {
-        Log.e("${this::class.simpleName}", ex.stackTraceToString())
+        ex.printStackTrace()
         WordsCountUiState.Loading
     }
 }
